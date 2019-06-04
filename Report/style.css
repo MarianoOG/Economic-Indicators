@@ -1,0 +1,47 @@
+table {
+    margin-left: 30%;
+    width: 40%;
+}
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+th, td {
+    padding: 5px;
+    text-align: left;
+}
+h2 {
+    text-align: center;
+}
+* {
+    box-sizing: border-box;
+}
+.column {
+    float: left;
+    width: 50%;
+}
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+img {
+    margin-left: 10%;
+    width: 80%;
+    height: 80%;
+}.loss {
+    color: red;
+}
+.win {
+    color: green;
+}
+@media only screen and (max-width : 780px) {
+    .column {
+        float: left;
+        width: 100%;
+    }
+    table {
+        margin-left: 10%;
+        width: 80%;
+    }
+}
