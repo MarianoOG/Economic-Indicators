@@ -5,7 +5,7 @@
 ###  Contains all the classes and functions needed to make trading desitions ###
 ###                      in cryptomarkets and exchanges                      ###
 ###                                                                          ###
-###                 Created by: Ona309 (onariam309@gmail.com)                ###
+###             Created by: MarianoOG (contacto@marianoog.com)               ###
 ###                         Date: December 31th, 2017                        ###
 ###                                                                          ###
 ################################################################################
@@ -15,7 +15,7 @@ from datetime import datetime
 from indicators import bollinger, bollingernormalized, macd, rsi
 from json import load
 from matplotlib.dates import date2num, num2date, DateFormatter
-from matplotlib.finance import candlestick_ohlc
+from mpl_finance import candlestick_ohlc
 from re import findall
 from requests import get
 from termstyle import red, green, blue
@@ -37,7 +37,7 @@ def createReport(name, body = ''):
     page += body
     page += '</body>\n'
     page += '</html>\n'
-    with open(dir_path + '\Report\\' + name + '.html', "w") as text_file:
+    with open(dir_path + '/Report/' + name + '.html', "w") as text_file:
         text_file.write(page)
 
 ################################################################################
@@ -201,7 +201,7 @@ class Market:
         fig.autofmt_xdate()
         fig.tight_layout()
         if save:
-            plt.savefig(dir_path + '\Report\Images\\' + self.name + '_candles.png')
+            plt.savefig(dir_path + '/Report/Images/' + self.name + '_candles.png')
             plt.close()
         else:
             plt.show()
@@ -241,7 +241,7 @@ class Market:
         fig.autofmt_xdate()
         fig.tight_layout()
         if save:
-            plt.savefig(dir_path + '\Report\Images\\' + self.name + '_indicators.png')
+            plt.savefig(dir_path + '/Report/Images/' + self.name + '_indicators.png')
             plt.close()
         else:
             plt.show()
@@ -330,13 +330,13 @@ class BitsoMarket(Market):
         self.low = []
         self.high = []
         self.close = []
-        code = get('https://bitso.com/trade/market/' + self.uri).content
+        code = get('https://bitso.com/trade/market/' + self.uri).text
         line = findall(r'chartData = \[\{.*\}\]', code)[0]
         data = line.split(' = ')[1]
 
-        with open(dir_path + "\Data\\" + self.name + ".json", "w") as text_file:
+        with open(dir_path + "/Data/" + self.name + ".json", "w") as text_file:
             text_file.write(data)
-        with open(dir_path + "\Data\\" + self.name + ".json") as data_file:
+        with open(dir_path + "/Data/" + self.name + ".json") as data_file:
             data = load(data_file)
 
         for x in data:
@@ -451,10 +451,10 @@ class Exchange:
 class BitsoExchange(Exchange):
 
     def __init__(self):
-        uris =  ['btc/mxn', 'eth/mxn', 'xrp/mxn', 'ltc/mxn', 'bch/mxn',
-                 'bch/btc', 'eth/btc', 'xrp/btc', 'ltc/btc']
-        names = ['MXN_BTC', 'MXN_ETH', 'MXN_XRP', 'MXN_LTC', 'MXN_BCH',
-                 'BTC_BCH', 'BTC_ETH', 'BTC_XRP', 'BTC_LTC']
+        uris =  ['btc/mxn', 'eth/mxn', 'xrp/mxn', 'ltc/mxn', 'bch/mxn', 'tusd/mxn', 'mana/mxn', 'gnt/mxn', 'bat/mxn',
+                            'eth/btc', 'xrp/btc', 'ltc/btc', 'bch/btc', 'tusd/btc', 'mana/btc', 'gnt/btc', 'bat/btc']
+        names = ['MXN_BTC', 'MXN_ETH', 'MXN_XRP', 'MXN_LTC', 'MXN_BCH', 'MXN_TUSD', 'MXN_MANA', 'MXN_GNT', 'MXN_BAT',
+                            'BTC_ETH', 'BTC_XRP', 'BTC_LTC', 'BTC_BCH', 'BTC_TUSD', 'BTC_MANA', 'BTC_GNT', 'BTC_BAT']
         fees =  [0.01,    0.01,    0.008,  0.005,   0.005,
                  0.0015,  0.0015,  0.0015, 0.0025]
         self.name = 'Bitso'
