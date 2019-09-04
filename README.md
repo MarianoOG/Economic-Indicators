@@ -30,18 +30,12 @@ This is a set of functions to show several economic indicators from bitso platfo
 * [ ] Create individual budget for each market based on total budget and risk of the market.
 * [ ] Incorporate inner market (1 level depth for )
 
-## Schedule
+## Add budget and goals
 
-* Jun-Jul -> Define stategy
-* Ago-Nov -> Try strategy
-* Dic     -> Analysis
-
-## Budget and goals
-
-* Total budget: $12,000.00
-* Weekly goal: $126.00
-* Maximum weekly risk: 1.0% ($120.00)
-* Maximum montly risk: 4.2% ($504.00)
+* Total budget
+* Weekly goal
+* Maximum weekly risk
+* Maximum montly risk
 
 ## Warning
 
